@@ -1,0 +1,60 @@
+<div class="about-container">
+  <div class="about-content">
+    <h1>About Angular Text Extractor</h1>
+    
+    <div class="section">
+      <h2>Features</h2>
+      <ul>
+        <li><strong>Image OCR:</strong> Extract text from images using Tesseract.js OCR engine</li>
+        <li><strong>PDF Text Extraction:</strong> Extract text directly from PDF documents</li>
+        <li><strong>Multiple File Formats:</strong> Supports various image formats (PNG, JPG, JPEG, etc.) and PDF files</li>
+        <li><strong>Confidence Scoring:</strong> Get OCR confidence scores for extracted text</li>
+        <li><strong>History Tracking:</strong> Keep track of all your extractions</li>
+        <li><strong>Export Options:</strong> Copy to clipboard or download as text file</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Technologies Used</h2>
+      <div class="tech-list">
+        <div class="tech-item">
+          <strong>Angular 17</strong> - Modern web framework
+        </div>
+        <div class="tech-item">
+          <strong>Tesseract.js</strong> - OCR engine for image text extraction
+        </div>
+        <div class="tech-item">
+          <strong>PDF.js</strong> - PDF text extraction library
+        </div>
+        <div class="tech-item">
+          <strong>TypeScript</strong> - Type-safe JavaScript
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Navigate to the <a routerLink="/extractor">Text Extractor</a> page</li>
+        <li>Click the file input and select an image or PDF file</li>
+        <li>Wait for the text extraction to complete</li>
+        <li>View, copy, or download the extracted text</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Component Architecture</h2>
+      <p>This application demonstrates a generic, reusable component pattern:</p>
+      <ul>
+        <li><strong>TextExtractorComponent:</strong> Generic component that handles file upload and emits extracted text</li>
+        <li><strong>TextExtractorParentComponent:</strong> Parent component that uses the generic component and adds additional features</li>
+        <li><strong>TextExtractorService:</strong> Service that handles the actual text extraction logic</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/extractor" class="btn btn-primary">Go to Extractor</a>
+    </div>
+  </div>
+</div>
+

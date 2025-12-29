@@ -1,0 +1,65 @@
+<div class="parent-container">
+  <div class="header">
+    <h1>Text Extractor Parent Component</h1>
+    <p class="subtitle">This component demonstrates how to use the generic text-extractor component</p>
+  </div>
+
+  <div class="extractor-section">
+    <h2>Upload File</h2>
+    <app-text-extractor (textExtracted)="onTextExtracted($event)"></app-text-extractor>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <strong>Error:</strong> {{ errorMessage }}
+  </div>
+
+  <div *ngIf="currentText" class="result-section">
+    <div class="result-header">
+      <h2>Extracted Text Result</h2>
+      <div class="action-buttons">
+        <button (click)="copyToClipboard()" class="btn btn-primary">Copy to Clipboard</button>
+        <button (click)="downloadText()" class="btn btn-secondary">Download as TXT</button>
+        <button (click)="clearResults()" class="btn btn-danger">Clear</button>
+      </div>
+    </div>
+
+    <div class="metadata">
+      <div class="metadata-item" *ngIf="currentText.sourceType">
+        <strong>Source Type:</strong> 
+        <span class="badge badge-{{ currentText.sourceType }}">{{ currentText.sourceType | uppercase }}</span>
+      </div>
+      <div class="metadata-item" *ngIf="currentText.confidence">
+        <strong>Confidence:</strong> 
+        <span class="confidence-value">{{ currentText.confidence | number:'1.2-2' }}%</span>
+      </div>
+      <div class="metadata-item">
+        <strong>Text Length:</strong> 
+        <span>{{ currentText.text.length }} characters</span>
+      </div>
+    </div>
+
+    <div class="text-preview">
+      <h3>Extracted Text:</h3>
+      <div class="text-content">{{ currentText.text }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="extractedTexts.length > 0" class="history-section">
+    <h2>Extraction History ({{ extractedTexts.length }})</h2>
+    <div class="history-list">
+      <div 
+        *ngFor="let text of extractedTexts; let i = index" 
+        class="history-item"
+        [class.active]="currentText === text"
+        (click)="currentText = text">
+        <div class="history-header">
+          <span class="history-index">#{{ i + 1 }}</span>
+          <span class="history-type">{{ text.sourceType | uppercase }}</span>
+          <span class="history-length">{{ text.text.length }} chars</span>
+        </div>
+        <div class="history-preview">{{ text.text.substring(0, 100) }}{{ text.text.length > 100 ? '...' : '' }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
