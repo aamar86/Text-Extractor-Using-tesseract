@@ -13,6 +13,7 @@ import { TextOutput } from '../../models/text-output.model';
 export class TextExtractorComponent {
 
   @Output() textExtracted = new EventEmitter<TextOutput>();
+  @Output() error = new EventEmitter<any>();
   loading = false;
 
   constructor(private extractor: TextExtractorService) {}
@@ -36,7 +37,7 @@ export class TextExtractorComponent {
       this.textExtracted.emit(result);
     } catch (error) {
       console.error('Error extracting text:', error);
-      // You might want to emit an error event here
+      this.error.emit(error);
     } finally {
       this.loading = false;
     }

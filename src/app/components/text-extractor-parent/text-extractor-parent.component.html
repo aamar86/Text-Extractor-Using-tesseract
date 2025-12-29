@@ -6,7 +6,7 @@
 
   <div class="extractor-section">
     <h2>Upload File</h2>
-    <app-text-extractor (textExtracted)="onTextExtracted($event)"></app-text-extractor>
+    <app-text-extractor (textExtracted)="onTextExtracted($event)" (error)="onError($event)"></app-text-extractor>
   </div>
 
   <div *ngIf="errorMessage" class="error-message">
