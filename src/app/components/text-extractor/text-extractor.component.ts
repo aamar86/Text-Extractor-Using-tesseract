@@ -7,7 +7,8 @@ import { TextOutput } from '../../models/text-output.model';
   selector: 'app-text-extractor',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './text-extractor.component.html'
+  templateUrl: './text-extractor.component.html',
+  styleUrls: ['./text-extractor.component.css']
 })
 export class TextExtractorComponent {
 
@@ -23,15 +24,21 @@ export class TextExtractorComponent {
     const file = input.files[0];
     this.loading = true;
 
-    let result: TextOutput;
+    try {
+      let result: TextOutput;
 
-    if (file.type === 'application/pdf') {
-      result = await this.extractor.extractFromPdf(file);
-    } else {
-      result = await this.extractor.extractFromImage(file);
+      if (file.type === 'application/pdf') {
+        result = await this.extractor.extractFromPdf(file);
+      } else {
+        result = await this.extractor.extractFromImage(file);
+      }
+
+      this.textExtracted.emit(result);
+    } catch (error) {
+      console.error('Error extracting text:', error);
+      // You might want to emit an error event here
+    } finally {
+      this.loading = false;
     }
-
-    this.textExtracted.emit(result);
-    this.loading = false;
   }
 }

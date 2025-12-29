@@ -1,2 +1,21 @@
-<input type="file" accept="image/*,.pdf" (change)="onFileSelected($event)" />
-<div *ngIf="loading">Extracting text...</div>
+<div class="file-upload-container">
+  <input 
+    type="file" 
+    accept="image/*,.pdf" 
+    (change)="onFileSelected($event)"
+    [disabled]="loading"
+    class="file-input"
+    id="fileInput" />
+  <label for="fileInput" class="file-label" [class.disabled]="loading">
+    <span *ngIf="!loading">Choose File</span>
+    <span *ngIf="loading">Processing...</span>
+  </label>
+</div>
+
+<div *ngIf="loading" class="loader-overlay">
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p class="loader-text">Extracting text from file...</p>
+    <p class="loader-subtext">Please wait, this may take a moment</p>
+  </div>
+</div>
